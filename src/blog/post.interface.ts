@@ -1,5 +1,7 @@
 import { document } from 'mongoose'
 
+// need to extend document this will add the requried functions 
+// 
 interface Post extends Document {
     readonly title: string;
     readonly description:  string;
