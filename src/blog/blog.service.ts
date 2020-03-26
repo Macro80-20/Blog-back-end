@@ -12,6 +12,7 @@ import { CreatePostDTO } from './dto/create-post.dto';
 // fetching the dtails of a single post from the databse
 @Injectable()
 export class BlogService {
+    // inject Post model in Blog . i can now use injected model with all of mongos 
     constructor(@injectModel('Post') private readonly postModel: Model<Post>) {}
 
     async addPost(createPostDTO: CreatePostDTO): Promise<Post> {
@@ -23,8 +24,18 @@ export class BlogService {
         return post 
     }
 
-    async getPosts(postId: string): promise<Post> {
+    async getPosts(postId: string): Promise<Post> {
         const post = await this.postModel.find().exec()
         return post
+    }
+
+    async editPost(postId:string,createPostDTO: CreatePostDTO): Promise<Post>{
+        const editedPost= await this.postModel.findByIdAndUpdate(postId,createPostDTO,{new:true})
+        return editedPost
+    }
+
+    async deletedPost(postId:String)  : Promise<any>{
+        const deletedPost = await this.postModel.findbyIdAndRemove(postId);
+        return deletedPost;
     }
 }
