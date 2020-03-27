@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { Module} from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { BlogController } from './blog.controller';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -12,4 +12,22 @@ import { BlogSchema } from './schemas/blog.schema';
   providers: [BlogService],
   controllers: [BlogController]
 })
-export class BlogModule {}
+// export class BlogModule {
+//   configure(consumer:MiddlewareConsumer): MiddlewareConsumer | void {
+//     consumer.apply(AuthenticationMiddleware).forRoutes(
+//       {method:RequestMethod.POST, path '/blog/post'},
+//       {method:RequestMethod.PUT, path '/blog/edit'},
+//       {method:RequestMethod.DELETE, path '/blog/delete'}
+//     )
+//     //With this implementation, any subsequent requests without an Access Token to the following routes will not be allowed by the application:
+//   }
+// }
+export class BlogModule {
+    // configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
+    //   consumer.apply(AuthenticationMiddleware).forRoutes(
+    //     { method: RequestMethod.POST, path: '/blog/post' },
+    //     { method: RequestMethod.PUT, path: '/blog/edit' },
+    //     { method: RequestMethod.DELETE, path: '/blog/delete' }
+    //   )
+    // }
+}
